@@ -89,7 +89,7 @@ export default function AboutPage() {
                             </p>
                             <div className="mt-6 grid grid-cols-2 gap-6 text-center">
                                 <div>
-                                    <div className="text-4xl font-bold text-rotary-green">36+</div>
+                                    <div className="text-4xl font-bold text-rotary-green">37+</div>
                                     <div className="text-sm text-gray-500 mt-1">Years of Service</div>
                                 </div>
                                 <div>

@@ -66,7 +66,7 @@ export default function AboutTeaser() {
 
                             {/* Stats */}
                             <div className="flex flex-col justify-center gap-8">
-                                <CounterStat to={36} label="Years of Service" numberColor="text-rotary-gold" labelColor="text-gray-300" />
+                                <CounterStat to={37} label="Years of Service" numberColor="text-rotary-gold" labelColor="text-gray-300" />
                                 <CounterStat to={50} suffix="K+" label="Lives Impacted" numberColor="text-white" labelColor="text-gray-300" />
                             </div>
                         </div>
