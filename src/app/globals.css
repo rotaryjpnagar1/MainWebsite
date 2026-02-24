@@ -1,0 +1,24 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
+@import "tailwindcss";
+
+:root {
+  --rotary-gold: #f7a81b;
+  --rotary-blue: #17458f;
+  --rotary-green: #008466;
+  --rotary-dark-green: #006c4f;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Inter", system-ui, sans-serif;
+  color: #1a1a2e;
+  background: #ffffff;
+}
+
+/* Sticky navbar transition */
+.navbar-sticky {
+  @apply shadow-lg bg-white/95 backdrop-blur-sm;
+}

@@ -1637,6 +1637,77 @@ blockquote::before {
   color: #FF6;
 }
 
+/* General container styling */
+#projects-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  margin: 30px;
+  padding: 0 10px;
+}
+
+/* Individual project card styling */
+.custom-block-wrap {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Hover effect */
+.custom-block-wrap:hover {
+  transform: translateY(-5px);
+}
+
+/* Image styling */
+.custom-block-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-bottom: 2px solid #f4f4f4;
+}
+
+/* Title styling */
+.custom-block-body h5 {
+  font-size: 1.5rem;
+  color: #333;
+  padding: 15px;
+  margin: 0;
+  text-align: center;
+}
+
+/* Description styling */
+.short-description {
+  font-size: 1rem;
+  color: #666;
+  padding: 0 15px 15px;
+  text-align: center;
+}
+
+/* Full description hidden by default */
+.full-description.hidden {
+  display: none;
+}
+
+/* Read more button styling */
+.read-more-btn {
+  display: inline-block;
+  background-color: #008466;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  width: 100%;
+  text-decoration: none;
+  font-weight: bold;
+  border-top: 1px solid #f4f4f4;
+  transition: background-color 0.3s ease;
+}
+
+.read-more-btn:hover {
+  background-color: #006c4f;
+}
+
 
 
 /*---------------------------------------
