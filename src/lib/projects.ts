@@ -19,6 +19,7 @@ export interface Project {
     categoryLabel: string;
     status: ProjectStatus;
     statusLabel: string;
+    url?: string;
 }
 
 export function formatCategory(category: ProjectCategory): string {

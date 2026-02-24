@@ -7,6 +7,8 @@ interface CounterStatProps {
     suffix?: string;
     label: string;
     duration?: number;
+    numberColor?: string;
+    labelColor?: string;
 }
 
 export default function CounterStat({
@@ -14,6 +16,8 @@ export default function CounterStat({
     suffix = "",
     label,
     duration = 2000,
+    numberColor = "text-rotary-green",
+    labelColor = "text-gray-600"
 }: CounterStatProps) {
     const [count, setCount] = useState(0);
     const hasStarted = useRef(false);
@@ -42,14 +46,14 @@ export default function CounterStat({
     }, [to, duration]);
 
     return (
-        <div ref={containerRef} className="text-center">
+        <div ref={containerRef} className="text-center group">
             <div className="flex items-end justify-center gap-1">
-                <span className="text-5xl font-bold text-rotary-green">{count}</span>
+                <span className={`text-6xl font-extrabold tracking-tight ${numberColor} group-hover:scale-110 transition-transform duration-500`}>{count}</span>
                 {suffix && (
-                    <span className="text-3xl font-bold text-rotary-gold mb-1">{suffix}</span>
+                    <span className="text-4xl font-bold text-rotary-gold mb-1">{suffix}</span>
                 )}
             </div>
-            <p className="text-gray-600 font-medium mt-1">{label}</p>
+            <p className={`font-semibold mt-2 tracking-wide uppercase text-sm ${labelColor}`}>{label}</p>
         </div>
     );
 }

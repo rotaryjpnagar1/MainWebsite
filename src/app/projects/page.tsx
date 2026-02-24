@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import ProjectCard from "@/components/projects/ProjectCard";
+import ProjectsList from "@/components/projects/ProjectsList";
 import { getProjects } from "@/lib/projects.server";
 
 export const metadata: Metadata = {
@@ -17,7 +17,7 @@ export default async function ProjectsPage() {
             {/* Hero */}
             <section className="relative h-56 bg-gray-900 flex items-center justify-center overflow-hidden">
                 <Image
-                    src="/images/causes/aarohana.webp"
+                    src="/images/slide/Rotary JP Nagar Logo.webp"
                     alt="Our Projects"
                     fill
                     className="object-cover opacity-30"
@@ -36,11 +36,7 @@ export default async function ProjectsPage() {
                             No projects available yet. Check back soon!
                         </p>
                     ) : (
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            {projects.map((project) => (
-                                <ProjectCard key={project.id} project={project} />
-                            ))}
-                        </div>
+                        <ProjectsList projects={projects} />
                     )}
 
                     <p className="text-center text-sm text-gray-400 mt-10">

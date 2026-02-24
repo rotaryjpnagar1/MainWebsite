@@ -12,7 +12,7 @@ export default function CtaBanner() {
                         href="/#join-us"
                         className="inline-block bg-white text-rotary-green font-bold px-8 py-3 rounded-full hover:bg-rotary-gold hover:text-white transition-all duration-300 shadow-lg whitespace-nowrap"
                     >
-                        Become a Volunteer
+                        Become a Member
                     </Link>
                 </div>
             </div>

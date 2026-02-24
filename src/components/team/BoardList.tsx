@@ -10,26 +10,26 @@ export default function BoardList({ members }: BoardListProps) {
     const additionalDirectors = members.filter((m) => isAdditionalDirector(m));
 
     return (
-        <div className="space-y-8">
+        <div className="space-y-12">
             {/* Main Board */}
-            <div className="overflow-hidden rounded-2xl shadow-md">
-                <table className="w-full text-sm">
+            <div className="bg-white rounded-3xl overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100/50">
+                <table className="w-full text-left border-collapse">
                     <thead>
-                        <tr className="bg-rotary-green text-white">
-                            <th className="text-left px-6 py-3 font-semibold">Position</th>
-                            <th className="text-left px-6 py-3 font-semibold">Name</th>
+                        <tr className="bg-rotary-blue text-white text-xs tracking-wider uppercase">
+                            <th className="px-8 py-5 font-bold w-1/3">Position</th>
+                            <th className="px-8 py-5 font-bold">Name</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody className="divide-y divide-gray-50">
                         {mainMembers.map((member, i) => (
                             <tr
                                 key={i}
-                                className={i % 2 === 0 ? "bg-white" : "bg-gray-50"}
+                                className="bg-white hover:bg-gray-50/50 transition-colors duration-200"
                             >
-                                <td className="px-6 py-3 font-medium text-gray-700">
+                                <td className="px-8 py-5 font-semibold text-rotary-gold text-sm">
                                     {member.position}
                                 </td>
-                                <td className="px-6 py-3 text-gray-800 font-semibold">
+                                <td className="px-8 py-5 text-gray-900 font-bold tracking-tight">
                                     {member.name}
                                 </td>
                             </tr>
@@ -40,18 +40,18 @@ export default function BoardList({ members }: BoardListProps) {
 
             {/* Additional Directors */}
             {additionalDirectors.length > 0 && (
-                <div>
-                    <h3 className="text-xl font-bold text-gray-700 mb-4">
+                <div className="pt-8">
+                    <h3 className="text-xl font-bold tracking-tight text-gray-900 mb-6 px-2">
                         Additional Directors
                     </h3>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                         {additionalDirectors.map((member, i) => (
                             <div
                                 key={i}
-                                className="bg-white border border-gray-200 rounded-xl px-5 py-4 shadow-sm hover:shadow-md transition-shadow"
+                                className="bg-white border border-gray-100/50 rounded-2xl p-6 shadow-sm hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] transition-all duration-300 hover:-translate-y-1 group"
                             >
-                                <p className="font-bold text-gray-800">{member.name}</p>
-                                <p className="text-sm text-rotary-green font-medium">{member.position}</p>
+                                <p className="font-bold text-gray-900 tracking-tight group-hover:text-rotary-blue transition-colors">{member.name}</p>
+                                <p className="text-sm text-rotary-gold font-semibold mt-2">{member.position}</p>
                             </div>
                         ))}
                     </div>

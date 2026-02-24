@@ -14,7 +14,7 @@ function mapCategory(value: string): [ProjectCategory, string] {
     if (s.includes("vocational")) return ["vocational", "Vocational Service"];
     if (s.includes("international")) return ["international", "International Service"];
     if (s.includes("club")) return ["club", "Club Service"];
-    return ["other", value || "Other"];
+    return ["other", "Other"];
 }
 
 // Fetch projects directly from the public Rotary Showcase (SPC) API
@@ -27,11 +27,12 @@ export async function getProjects(): Promise<Project[]> {
                 "subscriptionkey": "ROTARY_API_KEY",
             },
             body: JSON.stringify({
-                keyword: "Rotary Bangalore JP Nagar",
-                limit: "100", // Fetch up to 100 projects
+                clubId: "26141", // Exact Rotary Club ID for Bangalore JP Nagar
+                limit: "500",    // Ensure we fetch all historical projects
                 variation: "en",
             }),
-            // Revalidate the cache every hour (3600 seconds)
+            // Next.js rate-limiting safeguard: Cache this exact API request for 1 hour.
+            // Even under heavy traffic, Rotary's servers are only hit once per hour.
             next: { revalidate: 3600 },
         });
 
@@ -45,8 +46,25 @@ export async function getProjects(): Promise<Project[]> {
             return [];
         }
 
+        // Filter for any projects from July 2025 onwards safely avoiding JS Timezone offsets
+        const currentYearProjects = data.filter((item: any) => {
+            const dateStr = item.startDate || item.endDate || item.addDate;
+            if (!dateStr) return false;
+
+            // Extract YYYY and MM from "YYYY-MM-DDThh:mm:ss" strictly
+            const datePart = dateStr.split("T")[0];
+            const [yearStr, monthStr] = datePart.split("-");
+            const y = parseInt(yearStr, 10);
+            const m = parseInt(monthStr, 10);
+
+            // Any project from July 2025 onwards
+            if (y === 2025 && m >= 7) return true;
+            if (y > 2025) return true;
+            return false;
+        });
+
         // Map the SPC API response to our Project interface
-        return data.map((item: any) => {
+        return currentYearProjects.map((item: any) => {
             const name = item.title || "Untitled Project";
             const [category, categoryLabel] = mapCategory(item.summary + " " + item.description);
 
@@ -62,9 +80,8 @@ export async function getProjects(): Promise<Project[]> {
                 status = "ongoing";
             }
 
-            // You can prepend the Rotary blob storage URL if you know the exact path.
-            // For now, we use a fallback image if we don't know the exact CDN domain.
-            const imageUrl = item.url ? `/images/causes/aarohana.webp` : "/images/causes/aarohana.webp"; // Using placeholder for now to avoid broken images
+            // Use the exact CDN domain for the actual Rotary Showcase images
+            const imageUrl = item.url ? `https://spc.rotary.org/azureImages/${item.url}` : "/images/causes/project-hero.jpg";
 
             return {
                 id: item.nfKey || slugify(name),
@@ -72,11 +89,12 @@ export async function getProjects(): Promise<Project[]> {
                 slug: slugify(name),
                 shortDescription: (item.summary || "").trim(),
                 fullDescription: `${(item.description || "").trim()}\n\n[View on Rotary Showcase](${spcUrl})`,
-                image: imageUrl, // Placeholder or actual URL if known
+                image: imageUrl, // Fixed Image URL
                 category,
                 categoryLabel,
                 status,
                 statusLabel: status === "completed" ? "Completed" : status === "ongoing" ? "Ongoing" : "Upcoming",
+                url: spcUrl,
             };
         });
     } catch (error) {
