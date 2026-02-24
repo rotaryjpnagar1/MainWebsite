@@ -13,7 +13,7 @@ export default function Footer() {
                     <div className="lg:col-span-1">
                         <div className="rounded-2xl overflow-hidden shadow-2xl border border-white/5 bg-white/5 p-1 backdrop-blur-sm">
                             <iframe
-                                src="https://maps.google.com/maps?q=No.538,%20Balaji%20housing%20Layout,%20Vajrahalli,%20Off%20Kanakapura%20road,%20Bangalore%20Karnataka%20560062,%20India&t=&z=14&ie=UTF8&iwloc=&output=embed"
+                                src="https://maps.google.com/maps?q=VGGQ%2B3C%20Vajarahalli,%20Karnataka,%20India&t=&z=14&ie=UTF8&iwloc=&output=embed"
                                 width="100%"
                                 height="260"
                                 style={{ border: 0, borderRadius: "12px" }}
