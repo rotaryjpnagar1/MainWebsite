@@ -9,8 +9,8 @@ export const metadata: Metadata = {
         "Explore the community service projects and initiatives completed by Rotary Bangalore JP Nagar in 2025-26.",
 };
 
-export default function ProjectsPage() {
-    const projects = getProjects();
+export default async function ProjectsPage() {
+    const projects = await getProjects();
 
     return (
         <>
@@ -44,11 +44,10 @@ export default function ProjectsPage() {
                     )}
 
                     <p className="text-center text-sm text-gray-400 mt-10">
-                        To add or update projects, edit{" "}
-                        <code className="bg-gray-100 px-1 py-0.5 rounded text-xs">
-                            src/data/projects-2025-26.csv
-                        </code>{" "}
-                        and redeploy.
+                        To add or update projects, please update them on{" "}
+                        <a href="https://spc.rotary.org/" target="_blank" rel="noopener noreferrer" className="text-rotary-blue underline">
+                            Rotary Showcase (Service Project Center)
+                        </a>. This page syncs automatically.
                     </p>
                 </div>
             </section>

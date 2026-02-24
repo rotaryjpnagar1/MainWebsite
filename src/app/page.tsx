@@ -13,8 +13,8 @@ export const metadata: Metadata = {
     "Rotary Bangalore JP Nagar is a leading rotary club in Bangalore, part of Rotary District 3191, committed to community service, professional development, and impactful projects.",
 };
 
-export default function HomePage() {
-  const projects = getProjectsPreview(3);
+export default async function HomePage() {
+  const projects = await getProjectsPreview(3);
 
   return (
     <>

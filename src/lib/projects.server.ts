@@ -1,18 +1,4 @@
-// Server-only utility for parsing projects CSV
-import Papa from "papaparse";
-import { readFileSync } from "fs";
-import { join } from "path";
 import type { Project, ProjectCategory, ProjectStatus } from "./projects";
-
-interface CsvRow {
-    ID?: string;
-    Name?: string;
-    "Short Description"?: string;
-    "Full Description"?: string;
-    Image?: string;
-    Category?: string;
-    Status?: string;
-}
 
 function slugify(str: string): string {
     return (str || "project")
@@ -21,6 +7,7 @@ function slugify(str: string): string {
         .replace(/(^-|-$)/g, "") || "project";
 }
 
+// Fallback logic for categorizing projects based on Rotary structured data or text
 function mapCategory(value: string): [ProjectCategory, string] {
     const s = (value || "").toLowerCase();
     if (s.includes("community")) return ["community", "Community Service"];
@@ -30,37 +17,75 @@ function mapCategory(value: string): [ProjectCategory, string] {
     return ["other", value || "Other"];
 }
 
-export function getProjects(): Project[] {
-    const csvPath = join(process.cwd(), "src/data/projects-2025-26.csv");
-    const csv = readFileSync(csvPath, "utf-8");
-    const { data } = Papa.parse<CsvRow>(csv, {
-        header: true,
-        skipEmptyLines: true,
-    });
+// Fetch projects directly from the public Rotary Showcase (SPC) API
+export async function getProjects(): Promise<Project[]> {
+    try {
+        const res = await fetch("https://spc.rotary.org/api/Search", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "subscriptionkey": "ROTARY_API_KEY",
+            },
+            body: JSON.stringify({
+                keyword: "Rotary Bangalore JP Nagar",
+                limit: "100", // Fetch up to 100 projects
+                variation: "en",
+            }),
+            // Revalidate the cache every hour (3600 seconds)
+            next: { revalidate: 3600 },
+        });
 
-    return data.map((row) => {
-        const name = (row.Name || "Untitled Project").trim();
-        const [category, categoryLabel] = mapCategory(row.Category || "");
-        const statusRaw = (row.Status || "completed").toLowerCase();
-        const status: ProjectStatus = ["upcoming", "ongoing", "completed"].includes(statusRaw)
-            ? (statusRaw as ProjectStatus)
-            : "completed";
+        if (!res.ok) {
+            console.error("Failed to fetch from Rotary SPC API:", res.status);
+            return []; // Return empty array or throw, depending on how you want to handle errors
+        }
 
-        return {
-            id: row.ID || slugify(name),
-            name,
-            slug: slugify(name),
-            shortDescription: (row["Short Description"] || "").trim(),
-            fullDescription: (row["Full Description"] || "").trim(),
-            image: (row.Image || "").trim(),
-            category,
-            categoryLabel,
-            status,
-            statusLabel: status === "completed" ? "Completed" : status === "ongoing" ? "Ongoing" : "Upcoming",
-        };
-    });
+        const data = await res.json();
+        if (!data || !Array.isArray(data)) {
+            return [];
+        }
+
+        // Map the SPC API response to our Project interface
+        return data.map((item: any) => {
+            const name = item.title || "Untitled Project";
+            const [category, categoryLabel] = mapCategory(item.summary + " " + item.description);
+
+            // Generate a placeholder or SPC image URL if possible
+            // We use the SPC project details page as the read-more link
+            const spcUrl = item.nfKey ? `https://spc.rotary.org/Project/Details/${item.nfKey}` : "#";
+
+            // Map the SPC project status to our types
+            let status: ProjectStatus = "completed";
+            if (item.completedFlag === "0" || item.projectStatus === "Project Not Started") {
+                status = "upcoming";
+            } else if (item.projectStatus === "Work In Progress") {
+                status = "ongoing";
+            }
+
+            // You can prepend the Rotary blob storage URL if you know the exact path.
+            // For now, we use a fallback image if we don't know the exact CDN domain.
+            const imageUrl = item.url ? `/images/causes/aarohana.webp` : "/images/causes/aarohana.webp"; // Using placeholder for now to avoid broken images
+
+            return {
+                id: item.nfKey || slugify(name),
+                name,
+                slug: slugify(name),
+                shortDescription: (item.summary || "").trim(),
+                fullDescription: `${(item.description || "").trim()}\n\n[View on Rotary Showcase](${spcUrl})`,
+                image: imageUrl, // Placeholder or actual URL if known
+                category,
+                categoryLabel,
+                status,
+                statusLabel: status === "completed" ? "Completed" : status === "ongoing" ? "Ongoing" : "Upcoming",
+            };
+        });
+    } catch (error) {
+        console.error("Error fetching projects from Rotary SPC:", error);
+        return [];
+    }
 }
 
-export function getProjectsPreview(count = 3): Project[] {
-    return getProjects().slice(0, count);
+export async function getProjectsPreview(count = 3): Promise<Project[]> {
+    const allProjects = await getProjects();
+    return allProjects.slice(0, count);
 }

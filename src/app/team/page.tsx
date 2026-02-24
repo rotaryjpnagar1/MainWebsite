@@ -17,8 +17,8 @@ export default function TeamPage() {
             {/* Hero photo */}
             <section className="relative h-72 overflow-hidden">
                 <Image
-                    src="/images/slide/Slide_1.webp"
-                    alt="Rotary JP Nagar Team"
+                    src="/images/team/board-of-directors-2025-26.jpg"
+                    alt="Rotary JP Nagar Board of Directors 2025-26"
                     fill
                     className="object-cover"
                     priority
