@@ -21,12 +21,6 @@ export default function Hero() {
 
             <div className="container mx-auto px-6 py-20 relative z-10">
                 <div className="max-w-3xl">
-                    {/* Presidential Message Tag */}
-                    <div id="hero-presidential-badge" className="inline-flex items-center gap-2 bg-white/10 border border-rotary-gold/40 text-rotary-gold text-xs font-semibold px-4 py-1.5 rounded-full mb-6 backdrop-blur-sm shadow-sm">
-                        <span>RY {rotaryConfig.activeRotaryYear}</span>
-                        <span className="text-white/40">•</span>
-                        <span>Presidential Message: <strong>{rotaryConfig.presidentialMessage}</strong></span>
-                    </div>
 
                     {/* Single Semantic H1 */}
                     <h1 id="hero-heading" className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight mb-6">

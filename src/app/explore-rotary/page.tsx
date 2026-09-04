@@ -105,9 +105,9 @@ export default function ExploreRotaryPage() {
 
                 <div className="container mx-auto px-6 relative z-10">
                     <div className="max-w-3xl">
-                        <span className="inline-block text-xs font-bold uppercase tracking-widest text-rotary-gold bg-white/10 border border-rotary-gold/30 px-3.5 py-1.5 rounded-full mb-4">
+                        <div className="text-xs font-bold uppercase tracking-widest text-rotary-gold mb-3">
                             Knowledge Hub • Rotary District {rotaryConfig.districtNumber}
-                        </span>
+                        </div>
                         <h1 className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight mb-4">
                             Explore Rotary: The Definitive Guide
                         </h1>
