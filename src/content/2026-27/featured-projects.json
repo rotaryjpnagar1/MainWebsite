@@ -1,0 +1,49 @@
+{
+  "featuredProjectIds": [
+    "aarohan-2025",
+    "empowering-young-minds-2025",
+    "dialysis-cdsimer-2025",
+    "govt-school-nelehal-2025"
+  ],
+  "fallbackProjects": [
+    {
+      "id": "aarohan-2026",
+      "name": "Aarohan – Flagship Musical Medical Fundraiser",
+      "slug": "aarohan-musical-fundraiser",
+      "shortDescription": "Annual musical fundraiser supporting pediatric heart surgeries, thalassemia treatments, and critical care for underprivileged children.",
+      "fullDescription": "Aarohan is Rotary Bangalore JP Nagar's hallmark charity concert uniting classical and contemporary artists to fund life-saving medical procedures for pediatric patients, including heart surgeries and ongoing thalassemia management in premier hospitals across Bengaluru.",
+      "image": "/images/causes/1.webp",
+      "category": "community",
+      "categoryLabel": "Community Service",
+      "status": "completed",
+      "statusLabel": "Completed",
+      "url": "https://spc.rotary.org/Project/Details/F1204ECB-D63E-487D-8244-48965CD1A133"
+    },
+    {
+      "id": "empowering-young-minds-2026",
+      "name": "Empowering Young Minds – Government School Upliftment",
+      "slug": "empowering-young-minds",
+      "shortDescription": "Providing government school students with digital classrooms, educational supplies, and infrastructure upgrades.",
+      "fullDescription": "Under our Happy School initiative, Rotary Bangalore JP Nagar equips government and rural schools around Bengaluru with modern desks, smart TVs, science laboratories, school uniforms, and clean drinking water facilities.",
+      "image": "/images/causes/1.webp",
+      "category": "community",
+      "categoryLabel": "Basic Education & Literacy",
+      "status": "ongoing",
+      "statusLabel": "Ongoing",
+      "url": "https://spc.rotary.org/"
+    },
+    {
+      "id": "dialysis-cdsimer-2026",
+      "name": "Dialysis Center Support & Health Screening",
+      "slug": "dialysis-health-screening",
+      "shortDescription": "State-of-the-art dialysis machines and subsidized renal care access at CDSIMER Hospital.",
+      "fullDescription": "Rotary Bangalore JP Nagar has partnered with CDSIMER to inaugurate and maintain modern dialysis units, providing subsidized and free treatments to economically vulnerable patients suffering from chronic kidney conditions.",
+      "image": "/images/causes/project-hero.jpg",
+      "category": "community",
+      "categoryLabel": "Disease Prevention & Treatment",
+      "status": "completed",
+      "statusLabel": "Completed",
+      "url": "https://spc.rotary.org/"
+    }
+  ]
+}

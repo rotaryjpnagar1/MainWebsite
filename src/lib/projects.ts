@@ -15,10 +15,17 @@ export interface Project {
     shortDescription: string;
     fullDescription: string;
     image: string;
+    images?: string[];
     category: ProjectCategory;
     categoryLabel: string;
     status: ProjectStatus;
     statusLabel: string;
+    startDate?: string;
+    rotaryYear?: string;
+    volunteers?: number;
+    hours?: number;
+    budget?: string;
+    location?: string;
     url?: string;
 }
 

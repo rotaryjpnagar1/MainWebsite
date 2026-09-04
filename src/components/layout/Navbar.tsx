@@ -6,13 +6,14 @@ import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { HiMenuAlt3, HiX } from "react-icons/hi";
 import { FaFacebook, FaInstagram, FaYoutube } from "react-icons/fa";
+import { rotaryConfig } from "@/config/rotary-year";
 
 const navLinks = [
     { href: "/", label: "Home" },
-    { href: "/about", label: "About Us" },
-    { href: "/team", label: "Our Team" },
-    { href: "/projects", label: "Our Projects" },
-    { href: "/#join-us", label: "Join Us" },
+    { href: "/about", label: "About" },
+    { href: "/team", label: "Leadership" },
+    { href: "/projects", label: "Projects" },
+    { href: "/explore-rotary", label: "Explore Rotary" },
 ];
 
 export default function Navbar() {
@@ -21,54 +22,73 @@ export default function Navbar() {
     const pathname = usePathname();
 
     useEffect(() => {
-        const onScroll = () => setScrolled(window.scrollY > 60);
+        const onScroll = () => setScrolled(window.scrollY > 40);
         window.addEventListener("scroll", onScroll);
         return () => window.removeEventListener("scroll", onScroll);
     }, []);
 
+    // Close mobile menu on route change & lock scroll when open
+    useEffect(() => {
+        setIsOpen(false);
+    }, [pathname]);
+
+    useEffect(() => {
+        if (isOpen) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "";
+        }
+        return () => {
+            document.body.style.overflow = "";
+        };
+    }, [isOpen]);
+
     return (
-        <>
+        <header className="sticky top-0 z-50 w-full">
             {/* Top Info Bar */}
-            <div className="bg-gradient-to-r from-gray-900 to-rotary-blue/90 text-gray-300 text-sm py-2 hidden lg:block border-b border-rotary-gold/20">
+            <div className="bg-rotary-navy text-gray-300 text-xs py-2 hidden lg:block border-b border-white/10">
                 <div className="container mx-auto px-6 flex justify-between items-center">
-                    <div className="flex gap-8">
-                        <span className="flex items-center gap-2 text-gray-200">
-                            <span className="text-rotary-gold">📍</span> JP Nagar, Bangalore, India
+                    <div className="flex items-center gap-6">
+                        <span className="flex items-center gap-2 text-gray-300 font-light">
+                            <span className="text-rotary-gold">📍</span> {rotaryConfig.contact.address.locality}, Bengaluru
                         </span>
                         <a
-                            href="mailto:rotarybangalorejpnagardist3191@gmail.com"
-                            className="flex items-center gap-2 hover:text-white transition-colors group"
+                            href={`mailto:${rotaryConfig.contact.email}`}
+                            className="flex items-center gap-2 hover:text-white transition-colors"
                         >
-                            <span className="text-rotary-gold group-hover:scale-110 transition-transform">✉</span> Contact Us
+                            <span className="text-rotary-gold">✉</span> {rotaryConfig.contact.email}
                         </a>
+                        <span className="text-rotary-gold font-medium bg-white/5 px-2.5 py-0.5 rounded-full border border-white/10">
+                            RY {rotaryConfig.activeRotaryYear} • {rotaryConfig.presidentialMessage}
+                        </span>
                     </div>
-                    <div className="flex items-center gap-5">
+                    <div className="flex items-center gap-4">
                         <a
-                            href="https://www.facebook.com/rotaryjpnagar.org/"
+                            href={rotaryConfig.contact.socials.facebook}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-gray-400 hover:text-white hover:scale-110 transition-all"
-                            aria-label="Facebook"
+                            className="text-gray-400 hover:text-rotary-gold transition-colors"
+                            aria-label="Rotary JP Nagar on Facebook"
                         >
-                            <FaFacebook size={18} />
+                            <FaFacebook size={15} />
                         </a>
                         <a
-                            href="https://www.instagram.com/rotaryjpnagar/"
+                            href={rotaryConfig.contact.socials.instagram}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-gray-400 hover:text-white hover:scale-110 transition-all"
-                            aria-label="Instagram"
+                            className="text-gray-400 hover:text-rotary-gold transition-colors"
+                            aria-label="Rotary JP Nagar on Instagram"
                         >
-                            <FaInstagram size={18} />
+                            <FaInstagram size={15} />
                         </a>
                         <a
-                            href="https://www.youtube.com/@rotaryjpnagar"
+                            href={rotaryConfig.contact.socials.youtube}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-gray-400 hover:text-white hover:scale-110 transition-all"
-                            aria-label="YouTube"
+                            className="text-gray-400 hover:text-rotary-gold transition-colors"
+                            aria-label="Rotary JP Nagar on YouTube"
                         >
-                            <FaYoutube size={18} />
+                            <FaYoutube size={15} />
                         </a>
                     </div>
                 </div>
@@ -76,72 +96,94 @@ export default function Navbar() {
 
             {/* Main Navbar */}
             <nav
-                className={`sticky top-0 z-50 transition-all duration-500 ${scrolled
-                    ? "bg-white/85 backdrop-blur-md shadow-[0_10px_40px_-10px_rgba(0,0,0,0.1)] py-2 border-b border-gray-100"
-                    : "bg-white/95 backdrop-blur-sm shadow-sm py-4"
-                    }`}
+                aria-label="Main Navigation"
+                className={`transition-all duration-300 ${
+                    scrolled
+                        ? "bg-white/95 backdrop-blur-md shadow-md py-3 border-b border-gray-100"
+                        : "bg-white shadow-sm py-4"
+                }`}
             >
                 <div className="container mx-auto px-6">
                     <div className="flex items-center justify-between">
-                        {/* Logo */}
-                        <Link href="/" className="flex items-center group">
+                        {/* Club Logo & Brand */}
+                        <Link id="navbar-brand-logo" href="/" className="flex items-center gap-3 group" aria-label="Rotary Bangalore JP Nagar Homepage">
                             <Image
                                 src="/images/icons/RotaryJPNagarLogo.png"
-                                alt="Rotary Bangalore JP Nagar"
+                                alt="Rotary Bangalore JP Nagar Logo"
                                 width={320}
-                                height={90}
-                                className="h-20 lg:h-24 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                                height={95}
+                                className="h-20 lg:h-24 w-auto object-contain transition-transform duration-300 group-hover:scale-102"
                                 priority
                             />
                         </Link>
 
-                        {/* Desktop Nav */}
-                        <ul className="hidden lg:flex items-center gap-2">
-                            {navLinks.map((link) => {
-                                const isActive = pathname === link.href ||
-                                    (link.href !== "/" && pathname.startsWith(link.href));
-                                return (
-                                    <li key={link.href}>
-                                        <Link
-                                            href={link.href}
-                                            className={`px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${isActive
-                                                ? "bg-rotary-blue text-white shadow-md shadow-rotary-blue/20"
-                                                : "text-gray-600 hover:text-rotary-blue hover:bg-rotary-blue/5"
+                        {/* Desktop Nav Links */}
+                        <div className="hidden lg:flex items-center gap-1 xl:gap-2">
+                            <ul className="flex items-center gap-1">
+                                {navLinks.map((link) => {
+                                    const isActive =
+                                        link.href === "/"
+                                            ? pathname === "/"
+                                            : pathname.startsWith(link.href);
+                                    return (
+                                        <li key={link.href}>
+                                            <Link
+                                                id={`navlink-${link.label.toLowerCase().replace(/\s+/g, '-')}`}
+                                                href={link.href}
+                                                className={`px-4 py-2 rounded-lg text-sm font-semibold transition-colors duration-200 ${
+                                                    isActive
+                                                        ? "text-rotary-blue bg-rotary-blue/5 font-bold"
+                                                        : "text-gray-700 hover:text-rotary-blue hover:bg-gray-50"
                                                 }`}
-                                        >
-                                            {link.label}
-                                        </Link>
-                                    </li>
-                                );
-                            })}
-                        </ul>
+                                            >
+                                                {link.label}
+                                            </Link>
+                                        </li>
+                                    );
+                                })}
+                            </ul>
 
-                        {/* Mobile Toggle */}
+                            {/* Prominent Join CTA Button */}
+                            <Link
+                                id="navbar-join-btn"
+                                href="/join"
+                                className="ml-4 bg-rotary-blue text-white hover:bg-rotary-dark-blue font-bold text-sm px-6 py-2.5 rounded-full shadow-sm hover:shadow-md transition-all duration-200"
+                            >
+                                Join Rotary
+                            </Link>
+                        </div>
+
+                        {/* Mobile Menu Toggle Button */}
                         <button
                             onClick={() => setIsOpen(!isOpen)}
-                            className="lg:hidden p-2.5 rounded-full text-gray-700 hover:text-rotary-blue hover:bg-gray-100 transition-all"
-                            aria-label="Toggle navigation"
+                            className="lg:hidden p-2.5 rounded-lg text-gray-700 hover:text-rotary-blue hover:bg-gray-100 transition-colors"
+                            aria-expanded={isOpen}
+                            aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
                         >
-                            {isOpen ? <HiX size={24} /> : <HiMenuAlt3 size={24} />}
+                            {isOpen ? <HiX size={26} /> : <HiMenuAlt3 size={26} />}
                         </button>
                     </div>
                 </div>
 
-                {/* Mobile Menu */}
+                {/* Mobile Dropdown Menu */}
                 {isOpen && (
-                    <div className="lg:hidden absolute top-full left-0 w-full border-t border-gray-100 bg-white/95 backdrop-blur-md shadow-2xl pb-6 px-6 animate-slide-up">
-                        <ul className="flex flex-col gap-2 mt-4">
+                    <div className="lg:hidden border-t border-gray-100 bg-white shadow-xl px-6 py-6 transition-all">
+                        <ul className="flex flex-col gap-2">
                             {navLinks.map((link) => {
-                                const isActive = pathname === link.href;
+                                const isActive =
+                                    link.href === "/"
+                                        ? pathname === "/"
+                                        : pathname.startsWith(link.href);
                                 return (
                                     <li key={link.href}>
                                         <Link
                                             href={link.href}
                                             onClick={() => setIsOpen(false)}
-                                            className={`block px-5 py-3.5 rounded-xl text-base font-semibold transition-all ${isActive
-                                                ? "bg-rotary-blue text-white shadow-md"
-                                                : "text-gray-700 hover:bg-gray-50 hover:text-rotary-blue"
-                                                }`}
+                                            className={`block px-4 py-3 rounded-xl text-base font-semibold transition-colors ${
+                                                isActive
+                                                    ? "bg-rotary-blue text-white font-bold"
+                                                    : "text-gray-700 hover:bg-gray-50 hover:text-rotary-blue"
+                                            }`}
                                         >
                                             {link.label}
                                         </Link>
@@ -149,9 +191,30 @@ export default function Navbar() {
                                 );
                             })}
                         </ul>
+
+                        <div className="mt-6 pt-4 border-t border-gray-100 flex flex-col gap-3">
+                            <Link
+                                href="/join"
+                                onClick={() => setIsOpen(false)}
+                                className="w-full text-center bg-rotary-gold text-gray-900 font-bold py-3.5 rounded-xl shadow hover:bg-rotary-blue hover:text-white transition-colors"
+                            >
+                                Join Rotary Bangalore JP Nagar
+                            </Link>
+                            <div className="flex justify-center gap-6 pt-2 text-gray-500">
+                                <a href={rotaryConfig.contact.socials.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                                    <FaFacebook size={20} />
+                                </a>
+                                <a href={rotaryConfig.contact.socials.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                                    <FaInstagram size={20} />
+                                </a>
+                                <a href={rotaryConfig.contact.socials.youtube} target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+                                    <FaYoutube size={20} />
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 )}
             </nav>
-        </>
+        </header>
     );
 }

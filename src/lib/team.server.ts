@@ -1,26 +1,12 @@
-// Server-only utility for parsing team CSV
-import Papa from "papaparse";
-import { readFileSync } from "fs";
-import { join } from "path";
-import type { TeamMember } from "./team";
+// Server-only utility for fetching structured 2026-27 leadership data
+import leadershipContent from "@/content/2026-27/leadership.json";
+import type { LeadershipData, LeadershipMember } from "./team";
 
-interface CsvRow {
-    Position?: string;
-    Name?: string;
+export function getLeadership(): LeadershipData {
+    return leadershipContent as LeadershipData;
 }
 
-export function getTeam(): TeamMember[] {
-    const csvPath = join(process.cwd(), "src/data/team-2025-26.csv");
-    const csv = readFileSync(csvPath, "utf-8");
-    const { data } = Papa.parse<CsvRow>(csv, {
-        header: true,
-        skipEmptyLines: true,
-    });
-
-    return data
-        .filter((row) => row.Position && row.Name)
-        .map((row) => ({
-            position: (row.Position || "").trim(),
-            name: (row.Name || "").trim(),
-        }));
+export function getAllLeaders(): LeadershipMember[] {
+    const data = getLeadership();
+    return data.groups.flatMap((g) => g.members);
 }

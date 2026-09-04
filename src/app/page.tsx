@@ -1,16 +1,20 @@
 import type { Metadata } from "next";
-import HeroCarousel from "@/components/home/HeroCarousel";
+import Hero from "@/components/home/Hero";
+import PresidentWelcome from "@/components/home/PresidentWelcome";
 import QuickLinks from "@/components/home/QuickLinks";
-import AboutTeaser from "@/components/home/AboutTeaser";
-import CtaBanner from "@/components/home/CtaBanner";
-import ProjectsPreview from "@/components/home/ProjectsPreview";
-import JoinUs from "@/components/home/JoinUs";
+import ImpactHighlights from "@/components/home/ImpactHighlights";
+import FeaturedProjects from "@/components/home/FeaturedProjects";
+import LeadershipTeaser from "@/components/home/LeadershipTeaser";
+import JoinCta from "@/components/home/JoinCta";
 import { getProjectsPreview } from "@/lib/projects.server";
+import { rotaryConfig } from "@/config/rotary-year";
 
 export const metadata: Metadata = {
-  title: "Rotary Bangalore JP Nagar – Rotary District 3191",
-  description:
-    "Rotary Bangalore JP Nagar is a leading rotary club in Bangalore, part of Rotary District 3191, committed to community service, professional development, and impactful projects.",
+  title: "Home",
+  description: `${rotaryConfig.clubName} (District ${rotaryConfig.districtNumber}) – Serving Bengaluru since 1989 through health, education, and youth empowerment under the 2026-27 Presidential Message "${rotaryConfig.presidentialMessage}".`,
+  alternates: {
+    canonical: "/",
+  },
 };
 
 export default async function HomePage() {
@@ -18,12 +22,13 @@ export default async function HomePage() {
 
   return (
     <>
-      <HeroCarousel />
+      <Hero />
+      <PresidentWelcome />
       <QuickLinks />
-      <AboutTeaser />
-      <CtaBanner />
-      <ProjectsPreview projects={projects} />
-      <JoinUs />
+      <ImpactHighlights />
+      <FeaturedProjects projects={projects} />
+      <LeadershipTeaser />
+      <JoinCta />
     </>
   );
 }

@@ -1,0 +1,221 @@
+{
+  "rotaryYear": "2026-27",
+  "presidentialMessage": "Create Lasting Impact",
+  "groups": [
+    {
+      "id": "core-officers",
+      "title": "Core Office Bearers",
+      "description": "Executive leadership team steering Rotary Bangalore JP Nagar for RY 2026-27.",
+      "members": [
+        {
+          "name": "Rtn. PHF G M Ravi",
+          "role": "President",
+          "category": "core",
+          "isPrimary": true,
+          "image": "/images/avatar/portrait-young-redhead-bearded-male.jpg",
+          "bio": "Leading Rotary Bangalore JP Nagar with a dedication to impactful community initiatives and youth empowerment under the 2026-27 theme 'Create Lasting Impact'."
+        },
+        {
+          "name": "Rtn. Veerabasanagouda",
+          "role": "Club Secretary",
+          "category": "core",
+          "isPrimary": true,
+          "image": "/images/avatar/portrait-young-beautiful-woman-gesticulating.jpg",
+          "bio": "Managing club administration, secretarial affairs, and coordinating seamless communication across all service avenues."
+        },
+        {
+          "name": "Rtn. Rajesh Kumar K",
+          "role": "Immediate Past President (IPP)",
+          "category": "core",
+          "image": "/images/avatar/studio-portrait-emotional-happy-funny.jpg"
+        },
+        {
+          "name": "Rtn. Srinivasan K",
+          "role": "President Elect & Director, Club Service",
+          "category": "core",
+          "image": "/images/avatar/portrait-beautiful-young-woman-standing-grey-wall.jpg"
+        },
+        {
+          "name": "Rtn. Ramachandraiah R",
+          "role": "Vice President",
+          "category": "core",
+          "image": "/images/avatar/portrait-volunteer-who-organized-donations-charity.jpg"
+        },
+        {
+          "name": "Rtn. Gajendra K",
+          "role": "Joint Secretary",
+          "category": "core",
+          "image": "/images/avatar/smiling-casual-woman-dressed-volunteer-t-shirt-with-badge.jpg"
+        },
+        {
+          "name": "Rtn. Rajesh K",
+          "role": "Treasurer",
+          "category": "core",
+          "image": "/images/avatar/portrait-young-redhead-bearded-male.jpg"
+        },
+        {
+          "name": "Rtn. Allama Prabhu",
+          "role": "Sergeant at Arms",
+          "category": "core",
+          "image": "/images/avatar/studio-portrait-emotional-happy-funny.jpg"
+        }
+      ]
+    },
+    {
+      "id": "advisors",
+      "title": "Club Mentorship & Training",
+      "description": "Senior leaders guiding club excellence and governance.",
+      "members": [
+        {
+          "name": "PP Rtn. Amar Chetan Y S",
+          "role": "Club Trainer",
+          "category": "advisory"
+        },
+        {
+          "name": "PP Rtn. Umesh S Chikmath",
+          "role": "Club Mentor",
+          "category": "advisory"
+        }
+      ]
+    },
+    {
+      "id": "directors-chairs",
+      "title": "Service Directors & Committee Chairs",
+      "description": "Directors heading key Rotary avenues of service and focal initiatives.",
+      "members": [
+        {
+          "name": "Rtn. Srinivas Murthy",
+          "role": "Director, Vocational Service",
+          "category": "director"
+        },
+        {
+          "name": "Rtn. Prabha Rao",
+          "role": "Co-Director, Vocational Service",
+          "category": "director"
+        },
+        {
+          "name": "Rtn. Niranjan Umapathy",
+          "role": "Director, Community Service",
+          "category": "director"
+        },
+        {
+          "name": "Rtn. Jesintha",
+          "role": "Co-Director, Community Service",
+          "category": "director"
+        },
+        {
+          "name": "Rtn. Pitambari G",
+          "role": "Director, International Service",
+          "category": "director"
+        },
+        {
+          "name": "Rtn. Abhilash Ganachari",
+          "role": "Director, Youth Service",
+          "category": "director"
+        },
+        {
+          "name": "Rtn. Rtr. Samarth Viswanath",
+          "role": "Director, Public Image",
+          "category": "director"
+        },
+        {
+          "name": "Rtn. Sheshadri K",
+          "role": "Director, Pulse Polio",
+          "category": "director"
+        },
+        {
+          "name": "Rtn. Giridhar Sharma",
+          "role": "Bulletin Editor",
+          "category": "director"
+        },
+        {
+          "name": "Rtn. Ravi Shankar",
+          "role": "Chair, Membership Development",
+          "category": "chair"
+        },
+        {
+          "name": "PP Rtn. Kumaraswamy H R",
+          "role": "Chair, CSR",
+          "category": "chair"
+        },
+        {
+          "name": "PP Rtn. Srinivas Rao T S",
+          "role": "Chair, The Rotary Foundation (TRF)",
+          "category": "chair"
+        },
+        {
+          "name": "Rtn. Smitha",
+          "role": "Chair, Women Empowerment",
+          "category": "chair"
+        },
+        {
+          "name": "Rtn. Mohan Rao",
+          "role": "Chair, Diversity, Equity & Inclusion (DEI)",
+          "category": "chair"
+        }
+      ]
+    },
+    {
+      "id": "additional-directors",
+      "title": "Additional Directors",
+      "description": "Experienced Past Presidents and senior Rotarians supporting club project portfolios.",
+      "members": [
+        {
+          "name": "PP Rtn. Ravi Kumar A S",
+          "role": "Additional Director, Club Service",
+          "category": "additional"
+        },
+        {
+          "name": "PP Rtn. Devaraj C D",
+          "role": "Additional Director, Vocational Service",
+          "category": "additional"
+        },
+        {
+          "name": "PP Rtn. Marulasiddaiah",
+          "role": "Additional Director, Community Service",
+          "category": "additional"
+        },
+        {
+          "name": "PP Rtn. Bindu Madhav",
+          "role": "Additional Director, International Service",
+          "category": "additional"
+        },
+        {
+          "name": "PP Rtn. Deepak Loomba",
+          "role": "Additional Director, Youth Service",
+          "category": "additional"
+        },
+        {
+          "name": "PP Rtn. Basavaraj Gadag",
+          "role": "Additional Director, Public Image",
+          "category": "additional"
+        },
+        {
+          "name": "PP Rtn. Sumanth Kumar",
+          "role": "Additional Director, Permanent Project",
+          "category": "additional"
+        },
+        {
+          "name": "PP Rtn. Suresh Robert",
+          "role": "Additional Director, Happy School & CSR Projects",
+          "category": "additional"
+        },
+        {
+          "name": "PP Rtn. Basavaraj Haldal",
+          "role": "Additional Director, Board Meeting Mentor",
+          "category": "additional"
+        },
+        {
+          "name": "PP Rtn. Rajesh Sheethkal",
+          "role": "Additional Director, Membership Development",
+          "category": "additional"
+        },
+        {
+          "name": "PP Rtn. Annaiah",
+          "role": "Additional Director, New Projects",
+          "category": "additional"
+        }
+      ]
+    }
+  ]
+}

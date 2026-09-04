@@ -1,107 +1,170 @@
 import Link from "next/link";
 import { FaFacebook, FaInstagram, FaYoutube, FaPhone, FaWhatsapp, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
+import { rotaryConfig } from "@/config/rotary-year";
 
 export default function Footer() {
-    return (
-        <footer className="bg-gradient-to-b from-gray-900 to-black text-gray-300 relative overflow-hidden">
-            {/* Subtle top ambient glow */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-32 bg-rotary-gold/5 blur-[100px] pointer-events-none" />
+    const currentYear = new Date().getFullYear();
 
-            <div className="container mx-auto px-6 py-16 relative z-10">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-16">
-                    {/* Google Map */}
-                    <div className="lg:col-span-1">
-                        <div className="rounded-2xl overflow-hidden shadow-2xl border border-white/5 bg-white/5 p-1 backdrop-blur-sm">
-                            <iframe
-                                src="https://maps.google.com/maps?q=VGGQ%2B3C%20Vajarahalli,%20Karnataka,%20India&t=&z=14&ie=UTF8&iwloc=&output=embed"
-                                width="100%"
-                                height="260"
-                                style={{ border: 0, borderRadius: "12px" }}
-                                allowFullScreen
-                                loading="lazy"
-                                referrerPolicy="no-referrer-when-downgrade"
-                                title="Rotary Bangalore JP Nagar Location"
-                            />
+    return (
+        <footer className="bg-rotary-navy text-gray-300 border-t border-white/10 relative">
+            <div className="container mx-auto px-6 py-16">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+                    {/* Club Profile */}
+                    <div className="space-y-4">
+                        <div className="flex items-center gap-3">
+                            <span className="text-xl font-bold text-white tracking-tight">
+                                {rotaryConfig.clubName}
+                            </span>
+                        </div>
+                        <p className="text-sm text-gray-400 font-light leading-relaxed">
+                            Chartered on January 4, 1989. Serving the community through sustainable healthcare, educational infrastructure, environmental projects, and youth leadership across Bengaluru.
+                        </p>
+                        <div className="pt-2">
+                            <span className="inline-block text-xs font-semibold uppercase tracking-wider text-rotary-gold bg-white/5 border border-rotary-gold/30 px-3 py-1.5 rounded-full">
+                                RY {rotaryConfig.activeRotaryYear} • {rotaryConfig.presidentialMessage}
+                            </span>
                         </div>
                     </div>
 
-                    {/* Contact Info */}
+                    {/* Verified Contact Details */}
                     <div>
-                        <h3 className="text-white font-bold tracking-wider uppercase text-sm mb-6 border-b border-white/10 pb-4 inline-block">Contact Information</h3>
-                        <ul className="space-y-5 text-sm font-light text-gray-400">
+                        <h3 className="text-white font-bold uppercase tracking-wider text-xs mb-5 pb-2 border-b border-white/10">
+                            Contact & Meetings
+                        </h3>
+                        <ul className="space-y-3.5 text-sm text-gray-400">
                             <li>
-                                <a href="tel:+919035051122" className="flex items-center gap-4 hover:text-white transition-colors duration-300 group">
-                                    <FaPhone className="text-rotary-gold shrink-0 mt-1 transform group-hover:rotate-12 transition-transform" />
-                                    <span>+91 9035051122</span>
+                                <a
+                                    href={`tel:${rotaryConfig.contact.phone}`}
+                                    className="flex items-center gap-3 hover:text-white transition-colors"
+                                >
+                                    <FaPhone className="text-rotary-gold shrink-0" />
+                                    <span>{rotaryConfig.contact.phoneDisplay}</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="https://wa.me/919035051122" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 hover:text-white transition-colors duration-300 group">
-                                    <FaWhatsapp className="text-rotary-gold shrink-0 mt-1 transform group-hover:scale-110 transition-transform" />
-                                    <span>Chat on WhatsApp</span>
+                                <a
+                                    href={rotaryConfig.contact.whatsappUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center gap-3 hover:text-white transition-colors"
+                                >
+                                    <FaWhatsapp className="text-rotary-gold shrink-0 text-base" />
+                                    <span>Connect on WhatsApp</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="mailto:rotarybangalorejpnagardist3191@gmail.com" className="flex items-center gap-4 hover:text-white transition-colors duration-300 group">
-                                    <FaEnvelope className="text-rotary-gold shrink-0 mt-1 transform group-hover:-translate-y-0.5 transition-transform" />
-                                    <span>rotarybangalorejpnagardist3191@gmail.com</span>
+                                <a
+                                    href={`mailto:${rotaryConfig.contact.email}`}
+                                    className="flex items-start gap-3 hover:text-white transition-colors break-all"
+                                >
+                                    <FaEnvelope className="text-rotary-gold shrink-0 mt-1" />
+                                    <span>{rotaryConfig.contact.email}</span>
                                 </a>
                             </li>
-                            <li className="flex items-start gap-4 leading-relaxed">
+                            <li className="flex items-start gap-3 leading-relaxed">
                                 <FaMapMarkerAlt className="text-rotary-gold shrink-0 mt-1" />
                                 <span>
-                                    No.538, Balaji housing Layout, Vajrahalli,<br />
-                                    Off Kanakapura road, Bangalore<br />
-                                    Karnataka 560062, India
+                                    {rotaryConfig.contact.address.locality}, {rotaryConfig.contact.address.city},<br />
+                                    Karnataka {rotaryConfig.contact.address.postalCode}, India
                                 </span>
                             </li>
                         </ul>
                     </div>
 
-                    {/* Quick Links + Social */}
-                    <div className="flex flex-col">
-                        <h3 className="text-white font-bold tracking-wider uppercase text-sm mb-6 border-b border-white/10 pb-4 inline-block">Explore</h3>
-                        <ul className="space-y-3 text-sm font-light text-gray-400 mb-8 flex-1">
+                    {/* Quick Navigation & Explore */}
+                    <div>
+                        <h3 className="text-white font-bold uppercase tracking-wider text-xs mb-5 pb-2 border-b border-white/10">
+                            Explore & Get Involved
+                        </h3>
+                        <ul className="space-y-2.5 text-sm text-gray-400">
                             {[
                                 { href: "/", label: "Home" },
-                                { href: "/about", label: "About Us" },
-                                { href: "/team", label: "Our Team" },
-                                { href: "/projects", label: "Our Projects" },
+                                { href: "/about", label: "About Rotary JP Nagar" },
+                                { href: "/team", label: "Leadership (Board 2026-27)" },
+                                { href: "/projects", label: "Community Projects" },
+                                { href: "/explore-rotary", label: "Rotary Knowledge Hub" },
+                                { href: "/join", label: "Join Our Club" },
                             ].map((link) => (
                                 <li key={link.href}>
-                                    <Link href={link.href} className="hover:text-white transition-all duration-300 inline-flex items-center group">
-                                        <span className="text-rotary-gold opacity-0 -ml-4 group-hover:opacity-100 group-hover:mr-2 group-hover:ml-0 transition-all duration-300 font-bold">›</span>
+                                    <Link href={link.href} className="hover:text-rotary-gold transition-colors inline-block py-0.5">
                                         {link.label}
                                     </Link>
                                 </li>
                             ))}
                         </ul>
 
-                        <div>
-                            <h4 className="text-white font-bold tracking-wider uppercase text-xs mb-4">Connect With Us</h4>
+                        <div className="mt-6">
+                            <h4 className="text-white font-semibold text-xs uppercase tracking-wider mb-3">Connect With Us</h4>
                             <div className="flex items-center gap-3">
-                                <a href="https://www.facebook.com/rotaryjpnagar.org/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:bg-rotary-gold hover:text-gray-900 hover:border-rotary-gold hover:-translate-y-1 hover:shadow-[0_5px_15px_rgba(247,168,27,0.3)] transition-all duration-300" aria-label="Facebook">
-                                    <FaFacebook size={18} />
+                                <a
+                                    href={rotaryConfig.contact.socials.facebook}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-300 hover:text-gray-900 hover:bg-rotary-gold hover:border-rotary-gold transition-colors"
+                                    aria-label="Facebook"
+                                >
+                                    <FaFacebook size={16} />
                                 </a>
-                                <a href="https://www.instagram.com/rotaryjpnagar/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:bg-rotary-gold hover:text-gray-900 hover:border-rotary-gold hover:-translate-y-1 hover:shadow-[0_5px_15px_rgba(247,168,27,0.3)] transition-all duration-300" aria-label="Instagram">
-                                    <FaInstagram size={18} />
+                                <a
+                                    href={rotaryConfig.contact.socials.instagram}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-300 hover:text-gray-900 hover:bg-rotary-gold hover:border-rotary-gold transition-colors"
+                                    aria-label="Instagram"
+                                >
+                                    <FaInstagram size={16} />
                                 </a>
-                                <a href="https://www.youtube.com/@rotaryjpnagar" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:bg-rotary-gold hover:text-gray-900 hover:border-rotary-gold hover:-translate-y-1 hover:shadow-[0_5px_15px_rgba(247,168,27,0.3)] transition-all duration-300" aria-label="YouTube">
-                                    <FaYoutube size={18} />
+                                <a
+                                    href={rotaryConfig.contact.socials.youtube}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-300 hover:text-gray-900 hover:bg-rotary-gold hover:border-rotary-gold transition-colors"
+                                    aria-label="YouTube"
+                                >
+                                    <FaYoutube size={16} />
                                 </a>
                             </div>
                         </div>
                     </div>
+
+                    {/* Google Map Location */}
+                    <div>
+                        <h3 className="text-white font-bold uppercase tracking-wider text-xs mb-5 pb-2 border-b border-white/10">
+                            Location
+                        </h3>
+                        <div className="rounded-xl overflow-hidden border border-white/10 bg-black/40">
+                            <iframe
+                                src="https://maps.google.com/maps?q=VGGQ%2B3C%20Vajarahalli,%20Karnataka,%20India&t=&z=14&ie=UTF8&iwloc=&output=embed"
+                                width="100%"
+                                height="180"
+                                style={{ border: 0 }}
+                                allowFullScreen
+                                loading="lazy"
+                                referrerPolicy="no-referrer-when-downgrade"
+                                title="Rotary Bangalore JP Nagar Location Map"
+                            />
+                        </div>
+                        <p className="text-xs text-gray-400 mt-2 font-light">
+                            JP Nagar, Bengaluru
+                        </p>
+                    </div>
                 </div>
             </div>
 
-            {/* Bottom bar */}
-            <div className="border-t border-white/5 py-6 relative z-10 bg-black/50">
-                <div className="container mx-auto px-6 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs font-light tracking-wide text-gray-500">
-                    <p>Copyright © {new Date().getFullYear()} Rotary Bangalore JP Nagar</p>
+            {/* Bottom Bar */}
+            <div className="border-t border-white/5 py-6 bg-black/40 text-xs text-gray-500 font-light">
+                <div className="container mx-auto px-6 flex flex-col sm:flex-row justify-between items-center gap-4">
+                    <p>
+                        © {currentYear} {rotaryConfig.clubName} • Rotary District {rotaryConfig.districtNumber}
+                    </p>
                     <p>
                         Created & Maintained By{" "}
-                        <a href="https://www.samarthv.me" target="_blank" rel="noopener noreferrer" className="text-rotary-gold hover:text-white font-semibold transition-colors duration-300">
+                        <a
+                            href="https://www.samarthv.me"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-rotary-gold hover:text-white font-medium transition-colors"
+                        >
                             Rtn. Rtr. Samarth Viswanath
                         </a>
                     </p>

@@ -1,0 +1,69 @@
+{
+  "club": {
+    "name": "Rotary Bangalore JP Nagar",
+    "district": "Rotary District 3191",
+    "charterDate": "January 4, 1989",
+    "charterYear": 1989,
+    "clubId": "26141",
+    "activeRotaryYear": "2026-27",
+    "presidentialMessage": "Create Lasting Impact"
+  },
+  "president": {
+    "name": "Rtn. PHF G M Ravi",
+    "role": "President, RY 2026-27",
+    "message": "Welcome to Rotary Bangalore JP Nagar. For over 37 years, our club has stood as a beacon of community service, fellowship, and vocational integrity across Bengaluru. In Rotary Year 2026-27, guided by the Rotary International Presidential Message of 'Create Lasting Impact', we recommit ourselves to sustainable health initiatives, quality education in government schools, environmental conservation, and nurturing young leaders through Rotaract and Interact.",
+    "quote": "Real impact happens when dedicated professionals unite to solve real-world community challenges with compassion and accountability."
+  },
+  "servicePillars": [
+    {
+      "id": "health",
+      "title": "Healthcare & Preventive Care",
+      "description": "Equipping dialysis centers, organizing medical & blood donation camps, Thalassemia support, and championing the global eradication of Polio.",
+      "icon": "heart"
+    },
+    {
+      "id": "education",
+      "title": "Basic Education & Literacy",
+      "description": "Happy School transformations, RO drinking water plants, scholarships, science labs, and uniform/book distribution for underprivileged students.",
+      "icon": "scholarship"
+    },
+    {
+      "id": "community",
+      "title": "Community Economic Development",
+      "description": "Vocational excellence recognitions, sustainable livelihood programs, women empowerment, and disaster relief aid.",
+      "icon": "hands"
+    },
+    {
+      "id": "youth",
+      "title": "Youth Leadership & New Generations",
+      "description": "Fostering leadership through Rotary Youth Leadership Awards (RYLA) and sponsoring dynamic Rotaract and Interact clubs in Bengaluru.",
+      "icon": "team"
+    }
+  ],
+  "impactHighlights": [
+    {
+      "number": 37,
+      "suffix": "+",
+      "label": "Years of Continuous Service",
+      "description": "Chartered on January 4, 1989 in Bengaluru"
+    },
+    {
+      "number": 45,
+      "suffix": "+",
+      "label": "Annual Community Projects",
+      "description": "Health, educational infrastructure, literacy, and vocational awards"
+    },
+    {
+      "number": 100,
+      "suffix": "%",
+      "label": "Volunteer-Driven Execution",
+      "description": "100% of project contributions go directly to beneficiary initiatives"
+    },
+    {
+      "number": 3191,
+      "suffix": "",
+      "label": "Rotary District Affiliation",
+      "description": "Active participant in District 3191's flagship service programs"
+    }
+  ]
+}
