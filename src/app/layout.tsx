@@ -5,6 +5,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import MobileBottomNav from "@/components/layout/MobileBottomNav";
 import WhatsAppButton from "@/components/layout/WhatsAppButton";
+import ScrollToTop from "@/components/layout/ScrollToTop";
 import JsonLd from "@/components/seo/JsonLd";
 import { rotaryConfig } from "@/config/rotary-year";
 
@@ -106,6 +107,7 @@ export default function RootLayout({
         <Footer />
         <MobileBottomNav />
         <WhatsAppButton />
+        <ScrollToTop />
       </body>
     </html>
   );
