@@ -160,7 +160,7 @@ export default function Footer() {
                     <p>
                         Created & Maintained By{" "}
                         <a
-                            href="https://www.samarthv.me"
+                            href="https://samarthv.dev"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="text-rotary-gold hover:text-white font-medium transition-colors"
